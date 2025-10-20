@@ -25,7 +25,6 @@ class FourVector:
     
     def calculate_interval_squared(self):
         """Calculates the invariant s^2 = (c0)^2 - (c1)^2 - (c2)^2 - (c3)^2."""
-        # A more efficient "NumPy-native" way to do the sum
         sum_of_spatial_squares = np.sum(self.data[1:]**2)
         return self.data[0]**2 - sum_of_spatial_squares
 
