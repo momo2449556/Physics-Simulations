@@ -15,9 +15,9 @@ total_steps = 3000
 
 
 # --- Potential Parameters ---
-lambda_ = 1
+lambda_ = 5
 v = 1.0
-eta = 0.1  # Damping coefficient
+eta = 0.025  # Damping coefficient
 
 # --- Grid and Initial Conditions ---
 x = np.linspace(0, L, N)
