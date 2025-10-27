@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
 # --- Simulation Parameters ---
-N = 400
-L = 100.0
+N = 1000
+L = 250
 dx = L / N
 v_speed = 1.0 
 CFL = 0.7  # Courant-Friedrichs-Lewy condition (must be <= 1)
@@ -28,14 +28,14 @@ noise_level = 0.01
 
 random_bumps = np.random.rand(N) - 0.5
 
-# Apply the rule (the bias) to the initial state
+
 phi_now = (noise_level * random_bumps) 
 
 phi_prev = phi_now - pi_now * dt
 
 # --- Matplotlib Setup ---
 fig, ax = plt.subplots()
-ax.set_ylim(-v * 1.5, v * 1.5) # Made y-limits relative to v
+ax.set_ylim(-v * 1.5, v * 1.5) 
 ax.set_xlim(0, L)
 ax.set_title("1D Phi-Four Model (Spontaneous Symmetry Breaking)")
 ax.set_xlabel("Position (x)")
@@ -68,7 +68,7 @@ def update(frame):
 
         line.set_ydata(phi_now)
         time_text.set_text(f"Time Step: {frame}")
-
+    # Only add in energy kick after 250 frames
     else:
 
         laplacian = np.roll(phi_now, -1) + np.roll(phi_now, 1) - 2 * phi_now
