@@ -18,7 +18,7 @@ energy_kick = 0.001 # This bias allows the universe to set to +v
 # --- Potential Parameters ---
 lambda_ = 1
 v = 1.0
-eta = 0.01 # Damping coefficient
+ # Damping coefficient
 
 # --- Grid and Initial Conditions ---
 x = np.linspace(0, L, N)
@@ -58,7 +58,7 @@ def v_prime(phi_n):
 
     return v_prime 
 
-def RK4(pi_n, phi_n, laplacian, potential):
+def RK4(pi_n, phi_n, laplacian, potential, eta):
 
     
 
@@ -84,12 +84,12 @@ def RK4(pi_n, phi_n, laplacian, potential):
 
     return phi_next, pi_next
 
-    
+
 def update(frame):
     global phi_now, pi_now
     
     # Compute next step using RK4
-    phi_next, pi_next = RK4(pi_now, phi_now, laplacian, v_prime)
+    phi_next, pi_next = RK4(pi_now, phi_now, laplacian, v_prime,eta=0.01)
     
     # Update the state
     phi_now = phi_next
@@ -109,6 +109,7 @@ ani = animation.FuncAnimation(
 plt.grid(True)
 plt.show()
 
+
 print("Simulation finished.")
 print(f"Parameters: N={N}, L={L}, dx={dx:.3f}, dt={dt:.3f}, CFL={CFL}")
-print(f"Potential: lambda={lambda_}, v={v}, eta={eta}")
+print(f"Potential: lambda={lambda_}, v={v}, eta={0.01}")
